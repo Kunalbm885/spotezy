@@ -1,0 +1,524 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:,">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;300;400;500;700&family=Ubuntu:wght@300;400;500;700&display=swap"
+    rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="{% static 'css/B_Dash.css' %}" />
+
+  <title>SpotEzy</title>
+</head>
+
+
+<body>
+  <div class="bgpage">
+    <div class="navigation">
+      <ul>
+        <li class="top-logo">
+          <a href="#">
+            <span class="icon">
+              <img src="{% static 'images/mono-white.svg' %}" alt="" /></span>
+            <span class="title"><img src="{% static 'images/logo-title.svg' %}" alt="" /></span>
+          </a>
+        </li>
+        <li class="current_pg">
+          <a href="#" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip"
+            title="CREATE EVENT">
+            <span class="icon">
+              <i class="bi bi-view-list"></i>
+            </span>
+            <span class="title">Create Event</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip"
+            title="SALES">
+            <span class="icon">
+              <i class="bi bi-graph-up-arrow"></i>
+            </span>
+            <span class="title" style="font-family: 'Montserrat', sans-serif;
+              ">Sales</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'Created_Events' pk=bizuid %}"  data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip"
+            title="CREATED EVENTS">
+            <span class="icon">
+              <i class="bi bi-card-checklist"></i>
+            </span>
+            <span class="title">Created Events</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip"
+            title="PROFILE">
+            <span class="icon">
+
+              <i class="bi bi-person"></i>
+            </span>
+            <span class="title">Profile</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip"
+            title="HELP">
+            <span class="icon">
+              <i class="bi bi-question-circle"></i>
+            </span>
+            <span class="title">Help</span>
+          </a>
+        </li>
+        <li>
+
+
+          <a href="{% url 'logout' %}" data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-custom-class="custom-tooltip" title="LOGOUT">
+            <span class="icon">
+              <i class="bi bi-box-arrow-right"></i>
+            </span>
+            <span type="submit" class="title">Log Out</span>
+          </a>
+          </form>
+
+        </li>
+      </ul>
+      <div class="toggle" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip"
+        title="Click"></div>
+    </div>
+
+    <div class="main_right">
+      <form class="form1" action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div id="first-form" class="formscroll">
+          <h2> Setup Pricing</h2>
+          <p>Now Listing your events has became easy with SpotEzy!</p>
+          <hr />
+
+          <div class="ticket">
+            <div class="top-hearder">
+              {% for i in eve %}
+              {% if i.Event_img %}
+              <img src="{{i.Event_img.url}}" alt="">
+
+              {%endif%}
+
+              <div class="left">
+                <h1> {{i.Event_Name}}</h1>
+                <hr>
+                <br>
+                <br>
+                <h4 style="margin-bottom:1rem ;"><i class="bi bi-calendar-event"></i> &nbsp; Date : &nbsp;
+                  {{i.Startdate}}
+                </h4>
+                <h4 style="margin-bottom:1rem ;"> <i class="bi bi-clock"></i> &nbsp; Start Time : &nbsp; {{i.Starttime}}
+                  <span style="font-size: 1.2rem;">onwards</span>
+                </h4>
+                <h4><i class="bi bi-pin-map"></i> &nbsp; City : &nbsp; {{i.City}}
+                </h4>
+              </div>
+              {%endfor%}
+            </div>
+
+            <div class="tick-data">
+              <table name="mytab" class="ticket-table " id="tab">
+                <h2> - Created Tickets -</h2>
+                <thead>
+                  <tr>
+                    <th scope="col">Ticket Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Update</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {%for d in display %}
+                  <tr>
+                    <td>{{d.Ticket_type}}<span style="color: green;"> &#10004;</span></td>
+                    <td id="Quantity">{{d.Expected_Quantity}}</td>
+                    <td>&#8377;{{d.Price}}</td>
+                    <td>
+                      <a style="color: red;" href="" data-toggle="modal" data-target="#exampleModalCenter"
+                        class="update"> <i class="bi bi-pencil-square"></i> Edit
+                      </a> &nbsp; &vert; &nbsp; <a href="{% url 'delete_ticket' pk=eventid  id=d.uid  %}"
+                        onclick="return confirm('You are deleting this ticket.');"> 
+                    
+                        <i style="color: red;" class="bi bi-trash3"></i></a>
+                    </td>
+                    <td scope="row" id="Type" style="display: none;">{{d.Ticket_type}}</td>
+
+                    <td id="price" style="display: none;">{{d.Price}}</td>
+                    <td id="uuid" style="display: none;">{{d.uid}}</td>
+                    <td id="des" style="display: none;">{{d.Description}}</td>
+                    <td id="addi" style="display: none;">{{d.Additional_data}}</td>
+                    <td id="exptime" style="display: none;">{{d.Expiry_Time}}</td>
+                    <td id="expdatee" style="display: none;">{{d.Expiry_Date}}</td>
+                    <td id="quantityyy" style="display: none;">{{d.Expected_Quantity}}</td>
+                    <td id="createdby" style="display: none;">{{d.Created_by}}</td>
+                  </tr>
+
+                </tbody>
+                {% endfor %}
+              </table>
+            </div>
+            <div id="buttonconatiner">
+
+              <div class="addbutton">
+                <button type="button" onclick="addMore()">Add Tickets <i class="bi bi-plus-lg"></i> </button>
+    
+              </div>
+              <div style="position: relative ;" id="or">
+                <h4 style="position: relative; top:50% ;transform:translateY(-50%) ;">OR</h4>
+
+              </div>
+
+              <div class="pubbtn" id="pubbtn">
+                <button type="button"> 
+                  <a href="{% url 'Publish_Event' pk=bizuid fk=eventid   %}" onclick="popup()">Publish Event </a>               
+
+                </button>
+              </div>
+
+            </div>
+
+            <!-- <form action="{% url 'Publish_Event' pk=bizuid fk=eventid %}" method="POST">
+              {% csrf_token %}
+
+               
+              <input type="submit" value="Publish Event"></input>
+                
+            </form> -->
+
+
+          </div>
+
+
+          <div id="addmore" class="ticket-content-container">
+            <div class="con">
+              <input name="created_by" type="text" value="{{eventid}}" style="display: none;">
+              <div class="type mb-3">
+                <label for="formGroupExampleInput" class="form-label">
+                  Type of Ticket :</label>
+                <input name="tictype" type="text" class="form-control" id="formGroupExampleInput"
+                  placeholder="Eg : Early Birds / For Male / For Couple...." required />
+              </div>
+
+              <div class="des mb-3">
+                <label for="formGroupExampleInput" class="form-label">
+                  Short Description</label>
+                <input name="shortdes" type="text" class="form-control" id="formGroupExampleInput" placeholder="  "
+                  required />
+              </div>
+
+              <div class="row3">
+                <div class="des mb-3">
+                  <label for="formGroupExampleInput" class="form-label">
+
+                    Ticket Price :</label>
+                  <input name="price" type="text" class="form-control " id="formGroupExampleInput" placeholder="  "
+                    required style="padding-left:3rem;"><i class="fa fa-inr" style="position: relative ; bottom: 2.4rem ; left:
+                  1.5rem ;font-size:1.8rem"></i></input>
+
+                </div>
+
+                <div class="des mb-3">
+                  <label for="formGroupExampleInput" class="form-label">
+
+                    Quantity :</label>
+                  <input name="quantity" type="text" class="form-control" id="formGroupExampleInput" placeholder="100"
+                    required />
+                </div>
+              </div>
+
+              <div class="row3">
+                <div class="des mb-3">
+                  <label for="formGroupExampleInput" class="form-label">
+
+                    Expiration Date For This Ticket</label>
+                    <input name="expdate" type="date" class="form-control" id="formGroupExampleInput" placeholder="  "
+                    required />
+
+                </div>
+
+                <div class="des mb-3">
+                  <label for="formGroupExampleInput" class="form-label">
+
+                    Expiration Time :</label>
+                  <input name="exp" type="time" class="form-control" id="formGroupExampleInput" placeholder="  "
+                    required />
+                </div>
+              </div>              
+
+
+
+
+
+              <div class="des mb-3">
+                <label for="formGroupExampleInput" class="form-label">
+
+                  Additional Information (Optional) :<br>
+                  <p style="border-left:none; font-size:1rem ; color:
+                rgb(121, 121, 121) ; font-weight:bold;margin-bottom: 0;font-family: 'Monserrat';">(any additional
+                    information that you want to share with your user , it will be shared with ticket confirmation
+                    email)</p>
+                </label>
+                <textarea name="additional_info" type="text" class="form-control" id="formGroupExampleInput"
+                  placeholder="  " ></textarea>
+              </div>
+
+
+
+
+
+              <div class="col-12">
+                <button type="submit" id="submit-button" class="btn btn-primary">
+                  Submit
+                </button>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+    <form action="{% url 'updatetickets'  pk=eventid  %}" method="POST">
+      {% csrf_token %}
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <span> EDIT / UPDATE TICKET </span>
+            </div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-body">
+
+              <div class="type mb-3" style="display: none;">
+                <label for="tickname" class="form-label">
+
+                  Ticket Id :</label>
+                <input name="tickid" type="text" class="form-control" value="" id="tickid"
+                  placeholder="Eg : Early Birds / For Male / For Couple...." required />
+              </div>
+
+
+              <div class="con">
+                <div class="type mb-3">
+                  <label for="tickname" class="form-label">
+
+                    Type of Ticket :</label>
+                  <input name="tickname" type="text" class="form-control" value="" id="tickname"
+                    placeholder="Eg : Early Birds / For Male / For Couple...." required />
+                </div>
+
+                <div class="des mb-3">
+                  <label for="shdes" class="form-label">
+
+                    Short Description For Ticket:</label>
+                  <input name="shdes" type="text" class="form-control" value="" id="shdes" placeholder="  " required />
+                </div>
+
+                <div class="row3">
+                  <div class="des mb-3">
+                    <label for="price" class="form-label">
+                      Ticket Price :</label>
+                    <input name="price" type="text" class="form-control " value="" id="pprice" placeholder="  " required
+                      style="padding-left:3rem;"><i class="fa fa-inr" style="position: relative ; bottom: 2.4rem ; left:
+                      1.5rem ;font-size:1.8rem"></i></input>
+
+
+                  </div>
+
+                  <div class="des mb-3">
+                    <label for="quantityy" class="form-label">
+
+                      Quantity</label>
+                    <input name="quantityy" type="text" class="form-control" value="" id="quantityy" placeholder="  "
+                      required />
+                  </div>
+
+
+
+                </div>
+
+                <div class="row3">
+                  <div class="des mb-3">
+                    <label for="expdddate" class="form-label">
+
+                      Expiration Date For This Ticket:</label>
+                    <input name="expdddate" type="date" class="form-control" value="" id="expdddate" placeholder="  "
+                      required />
+                  </div>
+
+                  <div class="des mb-3">
+                    <label for="exptttime" class="form-label">
+
+                      Expiration Time :</label>
+                    <input name="exptime" type="time" class="form-control" value="" id="exptttime" placeholder="  "
+                      required />
+                  </div>
+
+
+
+                </div>
+
+                <div class="des mb-3">
+                  <label for="additional" class="form-label">
+
+                    Additional Information (Optional) :<br>
+                    <p style="border-left:none; font-size:1rem ; color:
+                  rgb(121, 121, 121) ; font-weight:bold;margin-bottom: 0;font-family: 'Monserrat';">(any additional
+                      information that you want to share with your user , it will be shared with ticket confirmation
+                      email)</p>
+                  </label>
+                  <textarea name="additional" value="&nbsp;" type="time" class="form-control" id="additional"
+                    placeholder="  " ></textarea>
+                </div>
+
+
+
+
+
+              </div>
+
+
+            </div>
+            <div class="modal-footer">
+
+              <button type="submit" id="savechanges" class="btn btn-primary">Save Changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </form>
+
+
+  </div>
+
+  <script src="{% static 'js/app.js' %}"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+
+
+  <script>
+
+    function addMore(){
+      document.getElementById('addmore').style.display="block";
+    }
+
+var rowCount = document.getElementById('tab').rows.length;
+    console.log(rowCount)
+    if (rowCount == 1){
+      document.getElementById('or').style.display ="none";
+      document.getElementById('pubbtn').style.display = "none";
+    }
+
+
+
+    $(".update").click(function () {
+      var $row = $(this).closest("tr");
+      var $ticid = $row.find("#uuid").text();
+
+      var $tictype = $row.find("#Type").text();
+      var $price = $row.find("#price").text();
+
+      var $time = $row.find("#exptime").text();
+
+      var $additional = $row.find("#addi").text();
+
+      var $expdate = $row.find("#expdatee").text();
+      var $quantity = $row.find("#quantityyy").text();
+      var $des = $row.find("#des").text();
+
+      console.log($time);
+      console.log($tictype);
+      console.log($price);
+      console.log($des);
+
+
+      $("#tickid").val($ticid);
+      $("#tickname").val($tictype);
+      $("#shdes").val($des);
+      $("#pprice").val($price);
+      $("#quantityy").val($quantity);
+      $('#exptttime').val($time);
+      $('#expdddate').val($expdate);
+      $("#additional").val($additional);
+
+
+
+
+    });
+
+
+
+
+    function validate() {
+      if (document.getElementById('checker').checked) {
+        document.getElementById('en').innerHTML = "ENABLED";
+        document.getElementById('en').style.color = "rgb(249 80 77)";
+        document.getElementById('inen').setAttribute('value', 'ENABLED');
+        document.getElementById('inen').innerHTML = "ENABLED";
+
+
+
+      } else {
+        document.getElementById('en').innerHTML = "DISABLED"
+        document.getElementById('en').style.color = "grey";
+
+        document.getElementById('inen').setAttribute('value', 'DISABLED');
+        document.getElementById('inen').innerHTML = "DISABLED";
+
+
+      }
+    }
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

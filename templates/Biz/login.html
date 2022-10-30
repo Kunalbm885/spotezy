@@ -1,0 +1,186 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:,">
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="{% static 'css/B.css' %}" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Poppins:wght@100;200;300;400;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  <title>SpotEzy</title>
+</head>
+
+<body>
+
+  <nav class="nav-bar">
+    <div class="nav-logo">
+      <div id="bars">
+        <a href="">
+          <!-- <i class="fa fa-bars"></i> -->
+        </a>
+      </div>
+
+      <img src="{% static 'images/SPOTEZY.png' %}" alt="" />
+    </div>
+
+    <ul class="main-menu">
+      <li><a class="" href="{% url 'homepage' %}">Home</a></li>
+
+      <li><a href="">About Us</a></li>
+      <li><a href="{% url 'biz_contactus_pg' %}">List Your Event</a></li>
+    </ul>
+
+    <div class="search">
+      <button class="search_btn"><i class="fa fa-search"></i></button>
+
+      <div class="profile">
+        <label for="dropcheck"><i class="fa fa-user"></i></label>
+        <input id="dropcheck" class="dropcheck" type="checkbox" style="position: absolute; left: -100000px" />
+
+        <div id="panel" class="drop-down">
+          <li>
+            <h7>For User</h7>
+          </li>
+          <hr />
+          <li><a class="dpdn" href="{% url 'UserLogin' %}">LogIn</a></li>
+          <li><a class="dpdn" href="#Registraion">SignUp</a></li>
+          <li>
+            <h7>For Businesss</h7>
+          </li>
+          <hr />
+          <li><a class="dpdn" href="{% url 'BusinessLogin' %}">Login</a></li>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="logincontainer">
+    <div class="info-login">
+
+      <div class="info-login-content">
+        <div id="img1">
+          <img src="{% static 'images/mono-white.svg' %}" alt="">
+        </div>
+        <div id="img2">
+          <img src="{% static 'images/logo-title.svg' %}" alt="">
+        </div>
+        <div id="te">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut explicabo optio ea aliquam, at veritatis ipsum illo
+          assumenda, accusamus voluptatem repellat beatae cum nobis, vero sapiente minus. Cum molestiae libero minus
+          officiis esse, temporibus voluptate.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="loginpart">
+    
+      {% if messages %}
+      {% for message in messages%}
+      <div id="alertmsg">
+        <div class="alert alert-danger d-flex  alert-dismissible fade show" role="alert" auto-close="3000">
+          <div style="width: 100%; text-align: center;"><strong>{{message}}</strong></div>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      </div>
+      {%endfor%}
+      {%endif%}
+
+      <form autocomplete="off" action="" method="post">
+        {% csrf_token %}
+        <div id="top">
+          <h3>WELCOME TO </h3>
+          <div style="text-align:center;">
+            <img src="{% static 'images/SPOTEZY.svg' %}" alt="" />
+          </div>
+          <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi reprehenderit incidunt aliquid commodi iste
+            suscipit quibusdam. </h5>
+
+        </div>
+        <div style="position: relative;" class="mb-3">
+          <!-- <label for="formGroupExampleInput" class="form-label">Email-Id</label> -->
+          <input name="mailinput" type="email" class="form-control" id="formGroupExampleInput"
+            placeholder="Email Address" required />
+          <i class="bi bi-envelope"></i>
+        </div>
+        <div style="position: relative;" class="mb-3">
+          <!-- <label for="formGroupExampleInput2" class="form-label">Password</label> -->
+          <input name="passinput" type="password" class="form-control" id="formGroupExampleInput2"
+            placeholder="Password" required />
+          <i class="bi bi-shield-lock"></i>
+        </div>
+
+
+        <div class=" loginbtnn col-12">
+          <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+        <div id="forgot">
+          <a href=""> Forgot Password ?</a>
+
+        </div>
+        <hr>
+      </form>
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+
+  <script>
+    $(function () {
+      var alert = $('div.alert[auto-close]');
+      alert.each(function () {
+        var that = $(this);
+        var time_period = that.attr('auto-close');
+        setTimeout(function () {
+          that.alert('close');
+        }, time_period);
+      });
+    });
+
+  </script>
+</body>
+
+</html>

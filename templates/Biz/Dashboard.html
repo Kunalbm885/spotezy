@@ -1,0 +1,550 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:,">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;300;400;500;700&family=Ubuntu:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/B_Dash.css' %}" />
+    <script type="module" src="./dist/datalist-css.min.js"></script>
+
+    <title>SpotEzy</title>
+  </head>
+
+  <body>
+    <div class="bgpage">
+      <div class="navigation">
+        <ul>
+          <li class="top-logo">
+            <a href="#">
+              <span class="icon">
+                <img src="{% static 'images/mono-white.svg' %}" alt=""
+              /></span>
+              <span class="title"
+                ><img src="{% static 'images/logo-title.svg' %}" alt=""
+              /></span>
+            </a>
+          </li>
+          <li class="current_pg">
+            <div>
+
+              <a
+              href="#"
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+              data-bs-custom-class="custom-tooltip"
+              title="CREATE EVENT"
+            >
+              <span class="icon">
+                <!-- <ion-icon name="grid-outline"></ion-icon> -->
+                <i class="bi bi-view-list"></i>
+              </span>
+              <span class="title">Create Event</span>
+            </a>
+
+
+
+            </div>
+
+          </li>
+
+          <!-- <li>
+            <a
+              href="#"
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+              data-bs-custom-class="custom-tooltip"
+              title="SALES"
+            >
+              <span class="icon">
+                <i class="bi bi-graph-up-arrow"></i>
+              </span>
+              <span class="title" style="font-family: 'Montserrat', sans-serif;
+              ">Sales</span>
+            </a>
+          </li> -->
+          
+          <li>
+            <a
+              href="{% url 'Created_Events' pk=bizuid %}"
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+              data-bs-custom-class="custom-tooltip"
+              title="CREATED EVENTS"
+            >
+              <span class="icon">
+                <!-- <ion-icon name="people-outline"></ion-icon> -->
+                <i class="bi bi-card-checklist"></i>
+              </span>
+              <span class="title">Created Events</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+              data-bs-custom-class="custom-tooltip"
+              title="PROFILE"
+            >
+              <span class="icon">
+                <!-- <ion-icon name="person-circle-outline"></ion-icon> -->
+                <!-- <i class="bi bi-person-circle"></i> -->
+                <i class="bi bi-person"></i>
+              </span>
+              <span class="title">Profile</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+              data-bs-custom-class="custom-tooltip"
+              title="HELP"
+            >
+              <span class="icon">
+                <!-- <ion-icon name="help-circle-outline"></ion-icon> -->
+                <i class="bi bi-question-circle"></i>
+              </span>
+              <span class="title">Help</span>
+            </a>
+          </li>
+          <li>
+
+  
+              <a href="{% url 'logout' %}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip"
+              title="LOGOUT">
+              <span class="icon">
+                <!-- <ion-icon name="log-out-outline"></ion-icon> -->
+                <i class="bi bi-box-arrow-right"></i>
+              </span>
+              <span type="submit" class="title">Log Out</span>
+            </a>
+          </li>
+        </ul>
+        <div
+          class="toggle"
+          data-bs-toggle="tooltip"
+          data-bs-placement="right"
+          data-bs-custom-class="custom-tooltip"
+          title="Click"
+        ></div>
+      </div>
+
+      <div class="main_right">
+        <form
+          class="form1"
+          action =""
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %}
+
+          <div id="first-form" class="formscroll">
+            <h2>Create Your Event</h2>
+            <p>Now Listing your events has became easy with SpotEzy!</p>
+            <hr />
+
+            <div class="form-first mb-3">
+              <label for="formGroupExampleInput" class="form-label">
+                Event Name :</label
+              >
+              <input
+                name="Event_Name"
+                type="text"
+                class="form-control"
+                id="formGroupExampleInput"
+                placeholder="Enter Your Event's Name"
+                required
+              />
+            </div>
+
+            <div class="image-cont">
+              <div class="file-upload">
+                <div class="image-upload-wrap">
+                  <div class="icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                  </div>
+                  <h2>Upload Your Event Image Here !</h2>
+                  <h5>Preferred size : 1080px * 1080px</h5>
+
+                  <header>Drag & Drop to Upload File</header>
+                  <span>OR</span>
+                  <label for="id_image">Upload Image</label>
+
+                  <input
+                    class="file-upload-input"
+                    type="file"
+                    onchange="readURL(this);"
+                    name="Event_img"
+                    accept=".png,.jpeg,.jpg"
+                    required
+                    id="id_image"
+                  />
+                </div>
+
+                <div
+                  class="file-upload-content"
+                  style="height: 96%; width: 96%; border-radius: 0.5rem"
+                >
+                  <img class="file-upload-image" src="#" alt="your image" />
+                  <div class="image-title-wrap">
+                    <button
+                      type="button"
+                      onclick="removeUpload()"
+                      class="remove-image"
+                    >
+                      Remove <span class="image-title">Uploaded Image</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="right-inputs">
+                <!-- <div class="contentsss"> -->
+                  <div class="mb-3" style="display: none;">
+                    <label for="formGroupExampleInput" class="form-label"
+                      >Dependency</label
+                    >
+                    <input
+                      type="text"
+                      required
+                      name="orgtype"
+                      class="form-control"
+                      id="formGroupExampleInput"
+                      placeholder="Eg : Live Event"
+                      value="{{type}}"
+                    />
+                  </div>
+
+
+
+                <div class="mb-3">
+                  <label for="formGroupExampleInput" class="form-label"
+                    >Organizer :</label
+                  >
+                  
+                  <input
+                    type="text"
+                    required
+                    name="organizer"
+                    class="form-control"
+                    id="formGroupExampleInput"
+                    placeholder="Eg : Live Event"
+                    value="{{bizname}}"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="formGroupExampleInput" class="form-label"
+                    >Category :</label
+                  >
+                  <input
+                    type="text"
+                    required
+                    name="category"
+                    class="form-control"
+                    id="formGroupExampleInput"
+                    placeholder="Eg : Live Event / DJ Night /Music Event"
+                    value=""
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="formGroupExampleInput" class="form-label"
+                    >Event Date :</label
+                  >
+                  <input
+                    type="date"
+                    name="startdate"
+                    required
+                    class="form-control"
+                    id="formGroupExampleInput"
+                    placeholder="dd-mm-yyyy"
+                    value=""
+                  />
+                </div>
+                <div class="eve-time">
+
+                <div class="first mb-3">
+                  <label for="formGroupExampleInput" class="form-label"
+                    >Start Time :</label
+                  >
+                  <input
+                    type="time"
+                    name="starttime"
+                    required
+                    class="form-control"
+                    id="formGroupExampleInput"
+                    value=""
+                  />
+                </div>
+                <div class="first mb-3">
+                  <label for="formGroupExampleInput" class="form-label"
+                    >End Time :</label
+                  >
+                  <input
+                    type="time"
+                    name="endtime"
+                    required
+                    class="form-control"
+                    id="formGroupExampleInput"
+                    value=""
+                  />
+
+                </div>
+              </div>
+
+              <div class="ext">
+
+                <div class="dropper form-group mb-3">
+                  <label for="exampleFormControlSelect2" class="form-label">Age Group  : </label>
+                  <input name="age" class="form-control" id="exampleFormControlSelect2" list="age-list"/>
+                    <datalist id="age-list">
+                    <option value="18+">18+</option>
+                    <option value="21+">21+</option>
+                    <option value="25+">25+</option>
+                    <option value="16+">16+</option>
+                    </datalist>
+                </div>
+
+                <div class="dropper form-group mb-3">
+                  <label for="exampleFormControlSelect2" class="form-label">Language :</label>
+                  <input name="lang" class="form-control" id="exampleFormControlSelect2" list="lang-list"/>
+                    <datalist id="lang-list">
+                    <option value="English">English</option>
+                    <option value="English , Hindi">English , Hindi</option>
+                    <option value="Hinglish">Hinglish</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="Marathi">Marathi</option>
+                    </datalist>
+                </div>
+
+
+              </div>
+
+
+              </div>
+            </div>
+
+            <div class="address mb-3">
+              <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label"
+                  >City :</label
+                >
+                <input
+                  type="text"
+                  name="city"
+                  required
+                  class="form-control"
+                  id="formGroupExampleInput"
+                  placeholder="eg : Mumbai/Delhi/Banglore . . . "
+                  value=""
+                />
+              </div>
+
+              <div class="mb-3">
+                <div>
+                  <label  class="form-label"
+                  >Is Your Venue Decided ? </label>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" onclick="venuechecker()" name="inlineRadioOptions" id="inlineRadio1" value="Decided">
+                    <label class="form-check-label" for="inlineRadio1">Yes</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" onclick="venuechecker()" name="inlineRadioOptions" id="inlineRadio2" value="To Be Declared Soon ...">
+                    <label class="form-check-label" for="inlineRadio2">No</label>
+                  </div>
+                </div>
+              </div>
+
+              <div id="venuefield" style="display: none">
+                <label for="formGroupExampleInput" class="form-label"
+                >Venue :
+              </label>
+
+              <input
+
+                type="text"
+                required
+                name="fulladdress"
+                class="form-control"
+                id="map-search"
+                placeholder="Address here ..."
+              />
+
+              </div>
+
+            </div> 
+
+            <div class="textarea_container">
+              <div class="description-box">
+                <label id="desc-label" for="editor"
+                  >Description :</label
+                >
+                <textarea required name="Description" id="editor"></textarea>
+              </div>
+              <div class="tnc-box">
+                <label id="desc-label" for="editor"
+                  >Terms & Conditions :</label
+                >
+                <textarea id="a" required name="tnc" class="form-control" value="">
+
+----Venue and club rules apply----
+
+1) Strict COVID-19 Safety Protocols apply.
+
+2) Organiser/venue reserves the right to deny entry at any time as a precautionary measure to uphold the highest level of health and safety for     everyone.
+
+3) Temperature checks might be taken by any of the venue/restaurant representatives prior, during, and after, in the club. The event organiser/  venue will make a decision on access to the restaurant/venue based on your health conditions
+
+4) Do not buy tickets from anyone except online on skillboxes.com
+
+5) Please remember to carry a valid government-issued photo ID proof (Driver's License/Aadhar Card/PAN Card/Voter Card/Passport). You may not be permitted to enter in the absence of one.
+
+6) The venue and schedule are subject to change.
+
+7) This ticket permits entry to the event venue only. Any pre or after parties may have other ticketing requirements and may be sold separately.
+
+8) Security procedures, including frisking, remain the right of the management.
+
+9) No refund/replacement on a purchased ticket. Tickets you purchase are for personal use. You must not transfer (or seek to transfer) the tickets in breach of the applicable terms. A breach of this condition will entitle us to cancel the tickets without prior notification, refund, compensation or liability.
+
+10) Please do not carry dangerous or potentially hazardous objects including but not limited to weapons, knives, guns, fireworks, laser devices and bottles to the venue. We may have to eject these things (with or without you) from the venue.
+
+11) The sponsors/bands/organizers/management are not responsible for, including but not limited to, any injury or damage that may occur during or at the event.
+
+12) No liability or claims that may arise due to the consumption or intake of any food or drink or any other consumption will be entertained by the management.
+
+13) Parking near or at the event premises is at the risk of the vehicle owner.
+
+14) The holder of this ticket grants organizers the right to use, in perpetuity, all or any part of the recording of any video or still footage made of the holder's appearance on any channel or magazine for broadcast in any and all media globally and for advertising, publicity and promotions relating hereto without any further approval of theirs.
+
+15) The management reserves the exclusive right without refund or other recourse, to refuse admission to anyone who is found to be in breach of these terms and conditions including, if necessary, ejecting the holder/s of the ticket from the venue after they have entered the premises.
+
+
+            </textarea
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <button
+              on-click="myFunc()"
+              id="next-button"
+              class="btn btn-primary"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+
+
+
+    </div>
+
+    <script src="{% static 'js/app.js' %}"></script>
+
+    <script src="{% static 'js/ckeditor.js' %}"></script>
+    <!-- <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoFezzEZS77tQbgidwrp14-4vRDlOZaxc&libraries=places&callback=initialize"
+    ></script> -->
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+
+
+
+
+
+      CKEDITOR.replace("editor");
+
+      function venuechecker(){
+        if(document.getElementById('inlineRadio1').checked){
+          document.getElementById('venuefield').style.display="block"
+          document.getElementById('map-search').value=""
+      }
+        else if(document.getElementById('inlineRadio2').checked){
+        document.getElementById('venuefield').style.display="block"
+        document.getElementById('map-search').value="To Be Declared Soon ..."
+
+        }
+
+
+
+
+
+      }
+
+
+
+
+
+
+      let trgt = document.getElementById("map-search").innerHTML;
+      console.log(trgt);
+
+
+
+
+
+      
+
+      function myFunc() {
+       
+        var x = document.getElementById("first-form");
+        if (x.style.display === "none") {
+          x.style.display = "block";
+        } else {
+          x.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,469 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0%;
+  font-family: "Lora", serif;
+  font-family: "Poppins", sans-serif;
+  /* font-family: 'Montserrat', sans-serif; */
+}
+
+body {
+  background: #fdfaff;
+
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+}
+.box {
+  display: inline-block;
+  width: 340px;
+  height: 500px;
+
+  border: 2px solid red;
+  margin: 15px;
+  position: relative;
+  /* left: 50%; */
+  justify-content: center;
+}
+
+/* *************************************************************************************************************** */
+
+/*  NAV */
+
+/* ************************************************************************************************************** */
+
+.nav-bar {
+  display: flex;
+  position: fixed;
+  z-index: 100;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 16px;
+  width: 100vw;
+  height: 10vh;
+  margin: auto;
+  padding: 1.3rem;
+  background-color: #2a2a2a;
+  color: white;
+}
+
+li {
+  list-style: none;
+}
+
+.nav-bar li a {
+  color: white;
+  text-decoration: none;
+  padding: 5px 15px;
+  /* border: 2px solid white; */
+  /* border-radius: 50px;
+  box-shadow: 0px 4px 4px rgba(117, 117, 117, 0.25); */
+}
+
+.nav-bar ul li a:hover {
+  color: white;
+  border-radius: 5px;
+  background-color: black;
+  transition: 0.2s ease-out;
+  box-shadow: 0px 4px 4px rgba(60, 60, 60, 0.25);
+}
+
+.current {
+  /* border: 2px solid black;
+  box-shadow: 0px 0px 2px 3px rgb(117 117 117 / 25%); */
+  border-radius: 5px;
+  background-color: #000000;
+}
+.nav-logo {
+  font-family: "Anton";
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 30px;
+  display: flex;
+  margin-right: auto;
+}
+.nav-logo img {
+  width: 10vw;
+}
+#bars {
+  padding: 0 10px;
+  color: white;
+}
+
+#bars i {
+  color: white;
+}
+
+#bars i:hover {
+  color: #ffffff;
+  transition: 0.3s ease-out;
+}
+#logo {
+  padding: 0 10px;
+  font-family: "Anton";
+}
+
+.nav-bar ul {
+  display: flex;
+  margin: 0;
+}
+
+.nav-bar ul li {
+  padding: 0 15px;
+}
+
+span {
+  color: #ec4d37;
+  font-family: "Anton";
+}
+
+.search {
+  display: flex;
+}
+.search_btn {
+  background-color: transparent;
+  /* padding:10px;  */
+  width: 5vw;
+  height: 10vh;
+  outline: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+}
+.search_btn:hover {
+  background-color: #0a0a0a;
+  transition: 0.3s ease-out;
+}
+.profile > label {
+  text-decoration: none;
+  color: white;
+  width: 5vw;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+}
+
+.drop-down {
+  display: none;
+
+  text-align: left;
+  position: absolute;
+  top: 9vh;
+  right: 20px;
+  z-index: 9999999;
+  background: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  min-width: 12vw;
+  min-height: 25vh;
+  transition: 1s;
+  box-shadow: #000000;
+}
+.drop-down::before {
+  position: absolute;
+  right: 10%;
+  width: 5px;
+  height: 5px;
+  background: red;
+}
+
+.dpdn {
+  padding: 0px;
+}
+.drop-down hr {
+  margin: 0;
+  border: 1px solid black;
+}
+.drop-down :nth-child(3),
+.drop-down :nth-child(4),
+.drop-down :nth-child(7) {
+  /* position: relative; */
+  padding: 0.5rem;
+  color: darkgray;
+}
+
+.drop-down :nth-child(1),
+.drop-down :nth-child(5) {
+  color: gray;
+  text-align: center;
+  /* font-size: 1.2rem; */
+  font-weight: 600;
+  padding: 0.5rem;
+}
+
+.drop-down li a :hover {
+  background: #34005c;
+}
+
+.drop-down li a {
+  font-size: 0.8rem;
+}
+/* .drop-down  :nth-child(4) {
+  color: gray;
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+} */
+.profile > label:hover {
+  text-decoration: none;
+  color: #f9504d;
+
+  background-color: #0a0a0a;
+  transition: 0.1s ease-out;
+  font-size: 2rem;
+}
+
+.dropcheck:checked ~ .drop-down {
+  display: block;
+  transition: 1s ease-in;
+}
+
+.form-control {
+  padding: 1rem;
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid gray;
+}
+
+/* *************************************************************************************************************** */
+
+/*  CONTACT PAGE */
+
+/* ************************************************************************************************************** */
+
+.logincontainer {
+  position: absolute;
+  width: 75%;
+  display: flex;
+  background: transparent;
+  border-radius: 1rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50% ,-50%);
+  box-shadow: -8px 5px 16px 1px rgb(0 0 0 / 30%);
+  margin-top: 1rem;
+
+
+}
+.info-login{
+  width: 100%;
+  border-radius: 1rem 0rem 0rem 1rem;
+  /* background: rgb(249 80 77); */
+  background: linear-gradient(227.9deg, #F93264 -7.91%, #FF5D5A 51.42%, #FB5350 107.61%, #FF0400 107.62%, #F80400 107.63%);
+  padding: 2rem;
+  display: flex;
+}
+.loginpart{
+  width: 100%;
+  padding: 4rem;
+  border-radius: 0rem 1rem 1rem 0rem;
+  position: relative;
+
+}
+.loginpart #alertmsg{
+  position: absolute;
+  width: 100%;
+  top: 0rem;
+  right: 0rem;
+}
+.loginpart form{
+  padding:  0 1rem 1rem 1rem;
+  
+}
+.loginpart .form-control{
+  position: relative;
+  border-radius: .5rem;
+  padding: 1rem 3rem;
+  margin-bottom: 2rem;
+
+}
+.loginpart .bi{
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 1.2rem;
+}
+.loginpart .form-control:focus{
+  color: rgb(33 37 41);
+    background-color: rgb(255 255 255);
+    border-color: rgb(249 80 77);
+    outline: 0;
+    box-shadow: 0 0 0 0 black;
+}
+.loginpart form #top{
+  margin-bottom: 2.5rem;
+}
+.loginpart form #top h3{
+  text-align: center;
+  margin-bottom: 0rem;
+  font-size: 1rem;
+  color: rgb(108 108 108);
+  font-weight: 550;
+}
+.loginpart form #top img{
+  width: 45%;
+}
+.loginpart form #top h5{
+  font-size: .7rem;
+  text-align: center;
+  color: rgb(128 128 128);
+}
+.loginbtnn{
+  display: flex;
+  justify-content: center;
+}
+.loginbtnn button{
+  background-color: rgb(249 80 77);
+  width: 50%;
+  border: none;
+  outline: none;
+  border-radius: 2rem;
+  transition: .2s ease;
+}
+.loginbtnn button:hover{
+ background-color: rgb(255 39 36);
+
+
+}
+#forgot{
+  text-align: center;
+}
+#forgot a{
+  font-size: .8rem;
+  color: gray;
+}
+.info-login-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.info-login #img1{
+  text-align: center;
+}
+.info-login #img2{
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.info-login #img1 img{
+  width:5rem;
+}
+.info-login #img2 img{
+  width:15rem;
+}
+#te{
+  text-align: center;
+  font-size: .8rem;
+    padding: 0 1rem;
+    color: white;
+}
+/* *************************************************************************************************************** */
+
+/*  CONTACT PAGE */
+
+/* ************************************************************************************************************** */
+
+.BizContactContainer {
+  display: flex;
+  position: relative;
+  width: 80vw;
+  background: white;
+  top: 15vh;
+  margin: auto;
+  border-radius: 25px;
+  box-shadow: 0px 0px 7px 1px rgb(117 117 117 / 25%);
+}
+
+.Left {
+  width: 40%;
+  /* background: rebeccapurple; */
+  /* background: linear-gradient(211.96deg, #F9504D -8.22%, #6A09FA 116.07%); */
+  background: #f9504d;
+  border-radius: 25px;
+  padding: 30px;
+}
+.content {
+  width: 100%;
+  height: 100%;
+  /* background: darkmagenta; */
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 50px;
+  /* box-shadow: 0px 0px 13px 1px rgb(5 5 5 / 25%); */
+  box-shadow: 0px 0px 14px 5px rgb(5 5 5 / 25%);
+}
+
+.Right {
+  width: 60%;
+  padding: 50px;
+}
+.Right > form {
+  padding: 0 1rem;
+}
+.Right .form-floating > label {
+  opacity: 0.5;
+  color: gray;
+  font-weight: 600;
+}
+
+.Right .form-control {
+  padding: 1rem;
+  border: none;
+  border-radius: 0;
+  border-bottom: 3px solid #c7c7c7;
+}
+
+.Right .form-floating > .form-control-plaintext ~ label,
+.Right .form-floating > .form-control:focus ~ label,
+.Right .form-floating > .form-control:not(:placeholder-shown) ~ label,
+.Right .form-floating > .form-select ~ label {
+  opacity: 0.7;
+  transform: scale(0.85) translateY(-0.9rem) translateX(0.15rem);
+  color: #f9504d;
+  font-size: 1.2rem;
+  font-weight: bolder;
+}
+
+.Right .form-floating > input:focus + label {
+  color: #f9504d;
+  font-size: 1.2rem;
+  font-weight: bolder;
+  margin-bottom: 5px;
+  padding-bottom: 4px;
+  transition: all 0.3s ease-in-out;
+}
+.Right .form-control:focus,
+.Right .form-control:hover {
+  outline: none;
+  box-shadow: none;
+  border: none;
+  transition: 0.5s;
+  border-bottom: 3px solid #f9504d;
+}
+
+.col-12-5 {
+  display: flex;
+  justify-content: center;
+}
+.col-12-5 button {
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+  background: #f9504d;
+  border: #f9504d;
+}
+
+.col-12-5 button:hover {
+  background: #ff6966;
+  border: #ff6966;
+  box-shadow: 2px 2px 4px 0px #3e3e3e;
+  transition: 0.2s ease-in-out;
+}
+
+body .mmodal-open .bg {
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+}
+
+
+

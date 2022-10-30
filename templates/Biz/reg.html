@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="data:,">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+
+    <title>SpotEzy</title>
+</head>
+
+<body>
+{% if messages %}
+{%for message in messages%}
+<h1>{{message}}</h1>
+{%endfor%}
+{% endif %}
+    <form action="{% url 'curator_Reg' %}" method="POST">
+        {% csrf_token %}
+
+        <div style="width: 70%; margin:auto; padding: 2rem;">
+            <h1 style="text-align: center;">Business Registration </h1>
+            <br>
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Business Name</label>
+                <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="">
+              </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                <input type="email" name="bizemail" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+              </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Contact Number</label>
+                <input type="text"name="number" class="form-control" id="exampleFormControlInput1" >
+
+              </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Registering As :</label>
+                <input type="text"  list="type-list"  name="type" class="form-control" id="exampleFormControlInput1" >
+                <datalist id="type-list">
+                    <option value="Event">Event</option>
+                    <option value="Club">Club</option>
+                </datalist>
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Create Paasword</label>
+                <input type="text" name="bizpass" class="form-control" id="exampleFormControlInput1" >
+
+              </div>
+
+              <div class="col-auto" >
+                <button type="submit" class="btn btn-primary mb-3">Create Account</button>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+    </form>
+
+</body>
+
+</html>

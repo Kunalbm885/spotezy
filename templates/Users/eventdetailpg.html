@@ -1,0 +1,527 @@
+{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link rel="icon" href="data:,">
+
+
+   <link rel="preconnect" href="https://fonts.googleapis.com" />
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link href="https://fonts.googleapis.com/css2?family=Lora&family=Poppins:wght@100;200;300;400;600;700&display=swap"
+      rel="stylesheet" />
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="{% static 'css/U.css' %}" />
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+
+   <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+   <script type="text/JavaScript" src=" https://MomentJS.com/downloads/moment.js"></script>
+
+   <title>SpotEzy</title>
+</head>
+
+<body>
+   {% for i in event %}
+   <div class="main-bg">
+
+      <nav class="nav-bar">
+
+         <div class="nav-logo">
+            <div id="bars">
+               <a href="">
+               </a>
+            </div>
+
+            <img src="{% static 'images/SPOTEZY_white.svg' %}" alt="">
+         </div>
+
+
+
+
+         <ul class="main-menu">
+            {% if user.is_authenticated %}
+            <li><a class="current" href="{% url 'userdashboard'%}">Home</a></li>
+            {%else%}
+            <li><a class="current" href="{% url 'homepage'%}">Home</a></li>
+
+            {% endif%}
+
+            <li><a href="">About Us</a></li>
+            <li><a href="{% url 'biz_contactus_pg' %}">List Your Event</a></li>
+         </ul>
+
+         <div class="search">
+
+            <button class="search_btn"><i class="fa fa-search"></i></button>
+
+            <div class="profile">
+               <label for="dropcheck">
+                  <h4 id="alpha"></h4>
+                  <input type="hidden" id="usrnm" value="{{u}}">
+                  <!-- <i class="fa fa-user"></i> -->
+               </label>
+               <input id="dropcheck" onclick="openTop()" class="dropcheck" type="checkbox" style="position:absolute ; left: -100000px;">
+               <div id="panel" class="drop-down">
+                  <li id="clsstop">
+                     <h7 style="color: #ef3664;" id="welcc">Welcome, {{u}} !</h7>
+                     <h6 style="color: #ef3664;" onclick="closeTop()">&times;</h6>
+                  </li>
+                  <!-- <hr> -->
+                  <li id="frusrlgin"><i class="bi bi-ticket-detailed"></i><a class="dpdn" href="">My Orders</a></li>
+                  <li id="frusrlgin"><i class="bi bi-box-arrow-left"></i><a class="dpdn" href="{% url 'logout'%}">Logout</a>
+                  </li>
+
+                  <!-- <hr> -->
+
+
+
+<!-- 
+                  <a href="" onclick="closeTop()" id="clohmpg" style="font-size: 2rem;text-decoration:none; float:right">&times;</a>
+                  <li>
+                     <h7 id="welcc"></h7>
+                  </li>
+                  <li><a class="dpdn" href="">My Orders</a></li>
+                  <li><a class="dpdn" href="{% url 'logout' %}">Logout</a></li> -->
+               </div>
+            </div>
+         </div>
+      </nav>
+
+
+
+
+
+
+
+   </div>
+
+   <div class="mid-part-details">
+
+      <div class="mid-content-details">
+
+
+         <div class="top-flexer">
+            <div id="imgleft">
+               {% if i.Event_img%}
+               <img src="{{i.Event_img.url}}" alt="">
+               {% endif %}
+            </div>
+
+            <div id="contentright">
+               <div class="cccontent">
+                  <!-- <div id="ribbon">
+  
+                     <h3>{{i.Status}}</h3>
+                   </div> -->
+                  <h1>
+                     {{i.Event_Name }}
+                  </h1>
+                  <input type="hidden" id="cond" value="{{i.Startdate }}">
+                  <input type="hidden" id="timeee" value="{{i.Starttime }}">
+                  <h2 id="detaildate"></h2>
+                  <h2 id="detailtime"></h2>
+                  <h1 id="detailcity"><i class="bi bi-geo"></i>&nbsp; &nbsp;{{i.City }}</h1>
+                  {% if user.is_authenticated %}
+                  <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                     <div class="btnbuynoww">
+                        GET YOUR TICKETS
+                     </div>
+                  </a>
+                  {%else%}
+                  <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
+                     <div class="btnbuynoww">
+                        GET YOUR TICKETS
+                     </div>
+                  </a>
+
+
+                  {% endif %}
+
+
+
+               </div>
+
+               <div class="cccontent">
+                  <div class="divconbot">
+                     <h2 class="divh2header"><i class="bi bi-geo-alt"></i>&nbsp; VENUE</h2>
+                     <h3 class="divh3header">{{i.Fulladdress}}</h3>
+                  </div>
+                  <div class="divconbot">
+                     <h2 class="divh2header"> <i class="bi bi-boombox"></i>&nbsp; EVENT TYPE</h2>
+                     <h3 class="divh3header">{{i.Category}}</h3>
+                  </div>
+                  <div id="ffff">
+                     <div class="divconbot" style="width: 100%;">
+                        <h2 class="divh2header"> <span>{{i.Age}}</span>&nbsp;AGE GROUP </h2>
+                        <h3 class="divh3header"> {{i.Age}}</h3>
+                     </div>
+                     <div class="divconbot" style="width: 100%;">
+                        <h2 class="divh2header"><i class="bi bi-translate"></i>&nbsp; LANGUAGE </h2>
+                        <h3 class="divh3header">{{i.Language}}</h3>
+                     </div>
+                  </div>
+
+               </div>
+            </div>
+
+         </div>
+
+
+         {% endfor %}
+
+
+      </div>
+
+
+   </div>
+
+
+
+
+
+   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+         <div class="modal-content">
+            <div class="modal-header">
+               {% for e in event %}
+
+               <div id="wholeee" style="display:flex; flex-direction:column;">
+                  <h5 class="modal-title" id="staticBackdropLabel">{{e.Event_Name}} <span>&nbsp; &vert; &nbsp;{{e.City}}
+                     </span></h5>
+                  <div id="dt">
+                     <h3 id="ticdate"></h3>
+                     <h3 id="tictime"></h3>
+                  </div>
+               </div>
+
+               {% endfor %}
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+               <div class="ticket-layout">
+                  <div class="ticketdetails">
+                     <div class="ticketdetails2">
+                        {% for t in tickets%}
+                        <div class="ticketinfoo">
+                           <div class="ticket_cont">
+                              <h2 class="ticuid" style="display: none;">{{t.uid}}</h2>
+                              <h2 class="ticname">{{t.Ticket_type}}</h2>
+                              <h4 class="ticdes">{{t.Description}}</h4>
+                              <h3 class="ticprice"><i class="bi bi-currency-rupee"></i>{{t.Price}}</h3>
+                              <input type="hidden" class="pr" value="{{t.Price}}">
+                           </div>
+
+
+                           <div class="ticketnum">
+                              <label id="qntylabel" for="qnty">Quantity</label>
+
+                              <select autocomplete="off" onchange="printSelectedItem()" id="qnty"
+                                 class="form-select form-select-lg mb-3 selll" aria-label=".form-select-lg example">
+                                 <!-- <option selected> 1 </option> -->
+                                 <option value="0">0</option>
+                                 <option value="1">1</option>
+                                 <option value="2">2</option>
+                                 <option value="3">3</option>
+                                 <option value="4">4</option>
+                                 <option value="5">5</option>
+                                 <option value="6">6</option>
+                                 <option value="7">7</option>
+                                 <option value="8">8</option>
+                                 <option value="9">9</option>
+                                 <option value="10">10</option>
+                              </select>
+                              <h1 class="prinnnnttt">INR 0</h1>
+
+                           </div>
+                        </div>
+
+                        {% endfor %}
+                     </div>
+
+
+                  </div>
+                  <div class="checkout">
+                     <div class="ck">
+                        <div class="ticquan">
+                           <h4>Total Item </h4>
+                           <h4 id="totalquantity">0</h4>
+                        </div>
+                        <div class="ticquan">
+                           <h4>Total Ticket Amount </h4>
+                           <h4 id="totalamount">INR 0</h4>
+                        </div>
+                        <div class="toft">
+                           {% for t in tickets%}
+                           <div class="toftcon">
+
+                              <h5 class="nnn" style="display: none;">{{t.Ticket_type}}</h5>
+                              <h5 class="ppp" style="display: none;"></h5>
+
+
+                           </div>
+                           {% endfor %}
+
+                        </div>
+
+                        <hr>
+                        <div class="ticquan">
+                           <h1>Total </h1>
+                           <h1 id="finalamount">INR 0</h1>
+
+                        </div>
+                        {%for i in event %}
+                        <form action="{% url 'order_summary' pk=i.uid %} " method="POST">
+                           {%endfor%}
+                           {%csrf_token%}
+                           <div>
+                              <input type="hidden" name="uids" id="uids" value="">
+                              <input type="hidden" name="price" id="ogpricelist" value="">
+                              <input type="hidden" name="ticket_type" id="tictypelist" value="">
+                              <input type="hidden" name="total_numbers" id="tictypenum" value="">
+
+                           </div>
+
+
+                           <div class="ckoutbtn">
+
+                              <button type="submit" disabled="true" id="checkoutbutton">CHECKOUT</button>
+                           </div>
+                        </form>
+
+
+
+
+                     </div>
+
+
+                  </div>
+
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="modal" id="staticBackdrop1" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered" >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Modal body text goes here.</p>
+            <div class="social-login">
+               <a class="social" href="{% provider_login_url 'google' %}"><img class="google" src="{% static 'images/google.png' %}" alt="" />
+               &nbsp;Login with Google Account !</a>
+             </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+   <div class="footer"></div>
+
+
+
+
+
+
+
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
+
+
+   <script>
+      window.addEventListener("pageshow", function (event) {
+         var historyTraversal = event.persisted ||
+            (typeof window.performance != "undefined" &&
+               window.performance.navigation.type === 2);
+         if (historyTraversal) {
+            // Handle page restore.
+            window.location.reload();
+         }
+      });
+
+
+      var d = document.getElementById("cond").value
+      const dd = new Date(d)
+      let tt = dd.getDate();
+      let yy = dd.getFullYear();
+      var monthName = dd.toLocaleString("default", { month: "long" });
+      document.getElementById("detaildate").innerHTML = '<i class="bi bi-calendar"></i> &nbsp; &nbsp;' + tt + '&nbsp' + monthName + '&nbsp' + "," + '&nbsp' + yy + '&nbsp; &nbsp;';
+      document.getElementById("ticdate").innerHTML = tt + '&nbsp' + monthName + '&nbsp' + "," + '&nbsp' + yy + '&nbsp; &nbsp;';
+
+      var t = document.getElementById("timeee").value
+      const number = moment(t, [ "HH.mm" ]).format("hh:mm a");
+      document.getElementById("detailtime").innerHTML = '<i class="bi bi-clock"></i> &nbsp; &nbsp;' + number;
+      document.getElementById("tictime").innerHTML = '&vert; &nbsp' + number;
+
+
+
+
+      function printSelectedItem() {
+         var container = document.getElementsByClassName("ticketinfoo");
+         var sub_array = [];
+         var super_array = [];
+
+         var val = [];
+         var price = [];
+
+         var subprice_array = [];
+         var ogprice = [];
+
+         var name_array = [];
+         var ticname = [];
+
+         var uid_array = [];
+         var ticuid = [];
+
+         for (let i = 0; i < container.length; i++) {
+            var e = document.getElementsByClassName("selll")[ i ];
+
+            var ticket_Name = document.getElementsByClassName("ticname")[ i ].innerHTML;
+            name_array.push(ticket_Name);
+            ticname.push(name_array.slice(0));
+
+            var ticket_uid = document.getElementsByClassName("ticuid")[ i ].innerHTML;
+            uid_array.push(ticket_uid);
+            ticuid.push(uid_array.slice(0));
+
+
+
+            var selectedItem = e.options[ e.selectedIndex ].value;
+            sub_array.push(selectedItem);
+            super_array.push(sub_array.slice(0));
+
+
+            var abc = document.getElementsByClassName("pr")[ i ].value;
+            subprice_array.push(abc);
+            ogprice.push(subprice_array.slice(0));
+
+            var multi = parseInt(abc) * parseInt(selectedItem);
+            val.push(multi);
+            price.push(val.slice(0));
+            document.getElementsByClassName("prinnnnttt")[ i ].innerHTML = 'INR &nbsp;' + multi;
+
+
+
+            document.getElementById("totalquantity").innerHTML = selectedItem;
+
+            var items = 0
+            items += parseInt(selectedItem);
+
+            var ticketname = document.getElementsByClassName("ticname")[ i ].innerHTML
+            document.getElementsByClassName("nnn")[ i ].innerHTML = ticketname + " X [" + selectedItem + "]";
+            document.getElementsByClassName("ppp")[ i ].innerHTML = "INR " + multi;
+            document.getElementsByClassName("nnn")[ i ].style.display = "block";
+
+            if (selectedItem == "0") {
+               document.getElementsByClassName("nnn")[ i ].style.display = "none";
+               document.getElementsByClassName("ppp")[ i ].style.display = "none";
+
+            }
+            else {
+               document.getElementsByClassName("nnn")[ i ].style.display = "block";
+               document.getElementsByClassName("ppp")[ i ].style.display = "block";
+
+            }
+
+
+         }
+
+         var arr = super_array
+         var arr1 = price
+
+         var minused = parseInt(arr.length) - parseInt(1)
+         var looper = arr[ minused ]
+         var og = ogprice[ minused ]
+         var Ticket_type = ticname[ minused ]
+         var uids = ticuid[ minused ]
+         console.log(Ticket_type)
+
+         var looper1 = arr1[ minused ]
+
+         var sum = 0;
+         var total = 0;
+
+         document.getElementById("uids").value = uids
+         document.getElementById("tictypelist").value = Ticket_type
+         document.getElementById("tictypenum").value = looper
+         document.getElementById("ogpricelist").value = og
+
+         for (i = 0; i < looper.length; i++) {
+            sum += parseInt(looper[ i ]);
+            total += parseInt(looper1[ i ])
+
+         }
+         var intt = sum;
+         var final_price = total;
+
+
+         document.getElementById("totalquantity").innerHTML = intt;
+         document.getElementById("totalamount").innerHTML = "INR " + final_price;
+         document.getElementById("finalamount").innerHTML = "INR " + final_price;
+
+
+
+
+         var check = document.getElementById("totalquantity").innerHTML;
+         if (check != "0") {
+            document.getElementById("checkoutbutton").removeAttribute('disabled');
+            var btn = document.getElementById("checkoutbutton");
+
+            btn.style.cursor = 'pointer'
+            btn.style.background = ' rgb(249 80 77)';
+
+         }
+         else {
+            document.getElementById("checkoutbutton").setAttribute('disabled', 'true')
+            var btn = document.getElementById("checkoutbutton");
+
+            btn.style.cursor = 'not-allowed'
+            btn.style.background = 'rgb(136 136 136)'
+         }
+
+      }
+   </script>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

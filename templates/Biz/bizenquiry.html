@@ -1,0 +1,190 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:,">
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="{% static 'css/B.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+    href="https://fonts.googleapis.com/css2?family=Lora&family=Poppins:wght@100;200;300;400;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>SpotEzy</title>
+  </head>
+
+  <body>
+    <div class="main bg">
+
+      <nav class="nav-bar">
+   
+        <div class="nav-logo"> 
+            <div id="bars">
+              <a href="">
+              <!-- <i class="fa fa-bars"></i> -->
+            </a>
+            </div>
+  
+            <!-- SpotEzy -->
+            <img src="{% static 'images/SPOTEZY.png' %}" alt=""> 
+        </div>
+      
+  
+  
+        
+        <ul class="main-menu">
+          <li><a  href="{% url 'homepage' %}">Home</a></li>
+  
+            <li><a href="">About Us</a></li>
+            <li><a class="current" href="">List Your Event</a></li>
+        </ul>
+    
+        <div class="search">
+  
+            <button class="search_btn"><i class="fa fa-search"></i></button>
+  
+            <div class="profile"  ><label for="dropcheck"><i class="fa fa-user"></i></label>
+              <input id="dropcheck" class="dropcheck" type="checkbox" style="position:absolute ; left: -100000px;">
+  
+              <div id="panel" class="drop-down">
+                <li><h7>For User</h7></li>
+                <hr>
+                <li><a class="dpdn" href="">LogIn</a></li>
+                <li><a class="dpdn" href="">SignUp</a></li>
+                <li><h7>For Businesss</h7></li>
+                <hr>
+                <li><a class="dpdn"   href="{% url 'BusinessLogin' %}">LogIn</a></li>
+              </div>
+            </div>
+            
+          </div>
+          
+       </nav>
+
+    
+
+    <div class="BizContactContainer">
+      <div class="Left"></div>
+
+      <div class="Right">
+        <form action="" method="POST" class="row g-3">
+          {% csrf_token %}
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              name="full_name"
+              class="form-control"
+              id="floatingInput"
+              placeholder="Your Name" required
+            />
+            <label for="floatingInput">Name</label>
+          </div>
+          <div class="col-md">
+            <div class="form-floating">
+              <input
+              name="email"
+
+                type="text"
+                class="form-control"
+                id="floatingInputGrid"
+                placeholder="name@example.com"  required
+              />
+              <label for="floatingInputGrid">Email-Id</label>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="form-floating">
+              <input
+                type="text"
+                class="form-control"
+                id="floatingInputGrid"
+                placeholder="9876543210" required
+                name="mobile"
+              
+              />
+              <label for="floatingInputGrid">Mobile No.</label>
+            </div>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input
+            name="subject"
+
+              type="text"
+              name="subject"
+              class="form-control"
+              id="floatingInput"
+              placeholder="Your Subject" required
+            />
+            <label for="floatingInput">Subject</label>
+          </div>
+
+          <div class="form-floating">
+            <textarea
+            name="msg"
+              class="form-control"
+              placeholder="Leave a comment here"
+              id="floatingTextarea2"
+              style="height: 12rem"
+            ></textarea>
+            <label for="floatingTextarea2">Comments</label>
+          </div>
+
+          <div class="col-12-5">
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+
+
+var myModal = new bootstrap.Modal(document.getElementById('myModal'), {})
+myModal.toggle()
+      // {% if msg %}
+
+      swal({
+        title: "Email Sent !",
+        text: "{{msg}}",
+        icon: "success",
+      });
+
+      // {% endif %}
+    </script>
+  </body>
+</html>

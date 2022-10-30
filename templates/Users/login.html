@@ -1,0 +1,194 @@
+{% load static %}
+{% load socialaccount %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="{% static 'css/design.css' %}" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Poppins:wght@100;200;300;400;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <title>Startup2.0</title>
+</head>
+
+<body style="font-size: 5rem;">
+
+
+  <nav class="nav-bar">
+
+    <div class="nav-logo">
+       <div id="bars">
+          <a href="">
+          </a>
+       </div>
+
+       <img src="{% static 'images/SPOTEZY_white.svg' %}" alt="">
+    </div>
+
+
+
+
+    <ul class="main-menu">
+       <li><a href="{%url 'homepage'%}">Home</a></li>
+
+       <li><a href="">About Us</a></li>
+       <li><a href="{% url 'biz_contactus_pg' %}">List Your Event</a></li>
+    </ul>
+
+    <div class="search">
+
+       <button class="search_btn"><i class="fa fa-search"></i></button>
+
+       <div class="profile">
+          <label for="dropcheck">
+             <i class="fa fa-user"></i>
+          </label>
+          <input id="dropcheck" class="dropcheck" type="checkbox" style="position:absolute ; left: -100000px;">
+          <div id="panel" class="drop-down">
+             <a href="">&times;</a>
+             <li>
+                <h7>For User</h7>
+             </li>
+             <hr>
+             <li><a class="dpdn" href="{% url 'userdashboard' %}">LogIn</a></li>
+             <li><a class="dpdn" href=""   data-bs-toggle="modal" data-bs-target="#exampleModal">SignUp</a></li>
+             <li>
+                <h7>For Businesss</h7>
+             </li>
+             <hr>
+             <li><a class="dpdn" href="{% url 'Dashboard-form1-page' %}">Login</a></li>
+          </div>
+       </div>
+    </div>
+ </nav>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="logincontainer">
+    <div class="loginbox">
+      {% if messages %}
+      <div id="alertmsgg">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert" id="popupppmsg" auto-close="3000">
+    
+          {%for message in messages%}
+          <strong>{{message}}</strong>
+          {%endfor%}
+      
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      </div>
+
+      {% endif %}
+
+      <div class="heading">
+
+        <h1> Login &vert; <a href="" style=" text-decoration: none; color: lightgray;">SignUp</a></h1>
+      </div>
+      <div class="social-login">
+        <a class="social" href="{% provider_login_url 'google' %}"><img class="google" src="{% static 'images/google.png' %}" alt="" />
+        &nbsp;Login with Google Account !</a>
+      </div>
+      <div id="divider">
+        <hr>
+        <h4>&nbsp;OR&nbsp;</h4>
+      
+        <hr>
+      </div>
+      <form autocomplete="off" action="{% url 'UserLogin'%}" method="POST">
+        {% csrf_token %}
+
+        <div class="iconputter mb-3">
+          <!-- <label for="exampleFormControlInput1" class="form-label"></label> -->
+          <div class="i">
+            <input type="email" name="uemail" class="form-control" id="exampleFormControlInput1" placeholder="Email">
+            <i class="bi bi-envelope-fill"></i>
+          </div>
+
+        </div>
+
+        <div class="iconputter mb-3">
+          <!-- <label for="exampleFormControlInput2" class="form-label"></label> -->
+          <div class="i">
+            <input type="password" name="upass" class="form-control" id="exampleFormControlInput2" placeholder="Password">
+            <i class="bi bi-shield-lock-fill"></i>
+          </div>
+
+        </div>
+
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-3">Login</button>
+        </div>
+        <div id="lost">
+          <a href="">forgot password ?</a>
+        </div>
+
+ 
+      </form>
+
+  
+
+
+    </div>
+   
+  </div>
+
+  {% if msg %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert" id="popupppmsg" auto-close="5000">
+
+    {%for message in msg%}
+    {{message}}
+    {%endfor%}
+
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endif %}
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+    
+  <script>
+    $(function () {
+      var alert = $('div.alert[auto-close]');
+      alert.each(function () {
+        var that = $(this);
+        var time_period = that.attr('auto-close');
+        setTimeout(function () {
+          that.alert('close');
+        }, time_period);
+      });
+    });
+
+
+
+     
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,222 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link rel="icon" href="data:,">
+
+
+   <link rel="preconnect" href="https://fonts.googleapis.com" />
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+   <link rel="stylesheet" href="{% static 'css/design.css' %}" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link href="https://fonts.googleapis.com/css2?family=Lora&family=Poppins:wght@100;200;300;400;600;700&display=swap"
+      rel="stylesheet" />
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="{% static 'css/design.css' %}" />
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+
+   <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+   <script type = "text/JavaScript" src = " https://MomentJS.com/downloads/moment.js"></script>
+
+   <title>SpotEzy</title>
+</head>
+
+<body>
+   <div class="main-bg">
+      <nav class="nav-bar">
+
+         <div class="nav-logo">
+            <div id="bars">
+               <a href="">
+               </a>
+            </div>
+
+            <img src="{% static 'images/SPOTEZY_white.svg' %}" alt="">
+         </div>
+
+
+
+
+         <ul class="main-menu">
+            <li><a class="current" href="{%url 'userdashboard'%}">Home</a></li>
+
+            <li><a href="">About Us</a></li>
+            <li><a href="{% url 'biz_contactus_pg' %}">List Your Event</a></li>
+         </ul>
+
+         <div class="search">
+
+            <button class="search_btn"><i class="fa fa-search"></i></button>
+
+            <div class="profile">
+               <label for="dropcheck">
+                  <h4 id="alpha"></h4>
+                  
+                  <input type="hidden" id="usrnm" value="{{u}}">
+               </label>
+               <input id="dropcheck" onclick="openTop()" class="dropcheck" type="checkbox" style="position:absolute ; left: -100000px;">
+               <div id="panel" class="drop-down">
+                  <li id="clsstop">
+                     <h7 style="color: #ef3664;" id="welcc">Welcome, {{u}} !</h7>
+                     <h6 style="color: #ef3664;" onclick="closeTop()">&times;</h6>
+                  </li>
+                  <!-- <hr> -->
+                  <li id="frusrlgin"><i class="bi bi-ticket-detailed"></i><a class="dpdn" href="">My Orders</a></li>
+                  <li id="frusrlgin"><i class="bi bi-box-arrow-left"></i><a class="dpdn" href="{% url 'logout'%}">Logout</a>
+                  </li>
+               </div>
+            </div>
+         </div>
+      </nav>
+
+
+      <div class="order-summury-pg">
+
+        <div class="container">
+                <h1>ORDER SUMMARY</h1>
+                <h3>ORDER-ID : {{ord_id}}</h3>
+                <hr>
+                <div class="event-content">
+
+                    {%for e in event %}
+                    <div class="eim">
+                        {% if e.Event_img%}
+                        <img src="{{e.Event_img.url}}" alt="">
+                        {% endif %}
+                    </div>
+                    <div class="econ" >
+                        <h3 id="tit">{{e.Event_Name}}</h3>
+                        <h4></h4>
+                        <h4></h4>
+                    </div>
+                    {% endfor%}
+
+                </div>
+                <hr>
+                <div class="summury">
+                        {% for name , number, price in all_list %}
+                        <div class="det">
+                            <h2>{{name}} x &nbsp; [{{number}}]</h2>
+                            <h2>Rs. {{price}}</h2>
+                        </div>
+
+                        {%endfor%}
+                        <div class="det">
+                           <h2>Booking Fee </h2>
+                           <h2>Rs. {{booking_fees}}</h2>
+                        </div>
+                        <div class="det">
+                           <h2>TOTAL</h2> 
+                           <h2>Rs. {{final_amt}}</h2>
+                        </div>
+
+
+
+                        
+                </div>
+                <div class="hifields">
+
+                  <form id="redirectForm" method="post" action="{% url 'handlerequest' %}">
+                     {% csrf_token %}            
+                     <div class="form-group" style="display: none;">
+                       <input class="form-control" name="orderId" placeholder="Enter Order ID here (Ex. order00001)" value="{{main_id}}"/>
+                     </div>
+                     <div class="form-group" style="display: none;">
+                       <input class="form-control" name="orderAmount" placeholder="Enter Order Amount here (Ex. 100)" value="{{final_amt}}"/>
+                     </div>
+                     <div class="form-group" style="display: none;">
+                       <input class="form-control" name="orderCurrency" value="INR" placeholder="Enter Currency here (Ex. INR)"/>
+                     </div>
+                     <div class="form-group" style="display: none;">
+                       <input class="form-control" name="orderNote" placeholder="Enter Order Note here (Ex. Test order)" value="{{ord_id}}"/>
+                     </div>    
+                     <div class="form-group" style="display: none;">
+                       <input class="form-control" name="customerName" placeholder="Enter your name here (Ex. John Doe)" value="{{u}}"/>
+                     </div>
+                     <div class="form-group" style="display: none;">
+                       <input class="form-control" name="customerEmail" placeholder="Enter your email address here (Ex. Johndoe@test.com)" value="{{email}}"/>
+                     </div>
+                     <div class="form-group" style="display: none;">
+                       <input class="form-control" name="customerPhone" placeholder="Enter your phone number here (Ex. 9999999999)" value="{{phone}}"/>
+                     </div>
+                     <div class="form-group" style="display: none;">
+                       <input class="form-control" name="returnUrl" placeholder="Enter the URL to which customer will be redirected (Ex. www.example.com)" value="http:127.0.0.1:8000/response/"/>
+                     </div>        
+                     <div class="form-group" style="display: none;">
+                       <input class="form-control" name="notifyUrl" placeholder="Enter the URL to get server notificaitons (Ex. www.example.com)"/>
+                     </div>
+                     <div class="form-group" style="display: none;">
+                        {%for e in event %}
+                        <input class="form-control" name="eventid" value="{{e.uid}}"/>
+                        <input class="form-control" name="evename" value="{{e.Event_Name}}"/>
+                        {% endfor%}
+                     </div>
+
+
+                     <div class="final-checkout">
+                        <button type="submit" value="Pay">CHECKOUT</button>
+                    </div>
+                   </form>
+                  
+
+                </div>
+
+        </div>
+
+      </div>
+
+
+
+
+
+
+
+
+   </div>
+
+
+
+
+
+
+
+
+   <script>
+      function closeTop(){
+         document.getElementById("panel").style.display="none";
+      }
+      function openTop(){
+         document.getElementById("panel").style.display="block";
+      }
+      var name = document.getElementById("usrnm").value;
+      var first = name.charAt(0);
+      var firstname = name.split(" ",1);
+      document.getElementById("alpha").innerHTML = first
+      // document.getElementById("welcc").innerHTML = "Welcome ! " + firstname 
+
+   
+      console.log(first)
+      
+
+
+
+   </script>
+
+
+
+
+
+</body>
+
+</html>

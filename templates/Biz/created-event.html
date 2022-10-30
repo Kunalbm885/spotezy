@@ -1,0 +1,254 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:," />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="http://fonts.cdnfonts.com/css/glacial-indifference-2" rel="stylesheet">
+                
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;300;400;500;700&family=Ubuntu:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/B_Dash.css' %}" />
+
+    <title>SpotEzy</title>
+  </head>
+
+  <body>
+    <div class="bgpage">
+      <div class="navigation">
+        <ul>
+          <li class="top-logo">
+            <a href="#">
+              <span class="icon">
+                <img src="{% static 'images/mono-white.svg' %}" alt=""
+              /></span>
+              <span class="title"
+                ><img src="{% static 'images/logo-title.svg' %}" alt=""
+              /></span>
+            </a>
+          </li>
+          <li >
+            <a
+              href="{% url 'Dashboard-form1-page' %}"
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+              data-bs-custom-class="custom-tooltip"
+              title="CREATE EVENT"
+            >
+              <span class="icon">
+                <i class="bi bi-view-list"></i>
+              </span>
+              <span class="title">Create Event</span>
+            </a>
+          </li>
+
+          <li class="current_pg">
+            <a
+              href="#"
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+              data-bs-custom-class="custom-tooltip"
+              title="CREATED EVENTS"
+            >
+              <span class="icon">
+                <!-- <ion-icon name="people-outline"></ion-icon> -->
+                <i class="bi bi-card-checklist"></i>
+              </span>
+              <span class="title">Created Events</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+              data-bs-custom-class="custom-tooltip"
+              title="PROFILE"
+            >
+              <span class="icon">
+                <!-- <ion-icon name="person-circle-outline"></ion-icon> -->
+                <!-- <i class="bi bi-person-circle"></i> -->
+                <i class="bi bi-person"></i>
+              </span>
+              <span class="title">Profile</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+              data-bs-custom-class="custom-tooltip"
+              title="HELP"
+            >
+              <span class="icon">
+                <!-- <ion-icon name="help-circle-outline"></ion-icon> -->
+                <i class="bi bi-question-circle"></i>
+              </span>
+              <span class="title">Help</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="{% url 'logout' %}"
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+              data-bs-custom-class="custom-tooltip"
+              title="LOGOUT"
+            >
+              <span class="icon">
+                <!-- <ion-icon name="log-out-outline"></ion-icon> -->
+                <i class="bi bi-box-arrow-right"></i>
+              </span>
+              <span type="submit" class="title">Log Out</span>
+            </a>
+          </li>
+        </ul>
+        <div
+          class="toggle"
+          data-bs-toggle="tooltip"
+          data-bs-placement="right"
+          data-bs-custom-class="custom-tooltip"
+          title="Click"
+        ></div>
+      </div>
+
+      <div class="main_right">
+
+        <h1>YOUR LISTED EVENTS</h1>
+        <div class="createdeventscontainer">
+          {%for i in created%}
+          <div class="created-eve">
+            <div class="main_box">
+              {% if i.Status == "Unpublished" %}
+              <div id="ribbon">
+  
+                <h3>{{i.Status}}</h3>
+              </div>
+              {% elif i.Status == "Published"  %} 
+              <div id="ribbon_Pub">
+  
+                <h3>{{i.Status}}</h3>
+              </div>
+  
+              {% endif %}
+  
+              {% if i.Event_img%}
+                <img src="{{i.Event_img.url}}" alt="">
+              {% endif%}
+  
+              <div class="left">
+                <h1>{{i.Event_Name}}</h1>
+                <hr>
+                <br>
+                <br>
+                <h4 style="margin-bottom:1rem ;"><i class="bi bi-calendar-event"></i> &nbsp; Date : &nbsp; <span id="date">{{i.Startdate}}</span> 
+                </h4>
+                <h4 style="margin-bottom:1rem ;"> <i class="bi bi-clock"></i> &nbsp; Start Time : &nbsp; <span id="time">{{i.Starttime}}
+  
+                </span> </h4>
+                <div class="url"><h4><i class="bi bi-link-45deg"></i> : <span id="link">http://127.0.0.1:8000/Events/{{i.uid}} </span> <span id="clipboard"> <i class="bi bi-clipboard-check"></i></span> 
+                </h4> </div>
+  
+  
+  
+                <div class="bottombar">
+                  <div class="bar">
+                    <div class="manageeve">
+                      <a href=""><i class="bi bi-pen-fill"></i>&nbsp; Update Event</a>  
+                    </div>
+                    <div class="manageeve">
+                      <a href=""> <i class="bi bi-bar-chart-fill"></i>&nbsp; Stats/Sales</a>  
+                    </div>
+      
+                    <div class="manageeve">
+                      <a href="{% url 'View_Event' eveid=i.uid bizuid=bizuid %}"><i class="bi bi-eye-fill"></i>&nbsp; View Event</a>
+      
+                    </div>
+                  </div>
+                  <div id="dell">
+                    <a href="{% url 'delete_event' pk=i.uid %}" onclick="return confirm('This Action Will Cause Permanent Deletion Of Event , If Sure Click OK ');"><i class="bi bi-trash"></i></a>
+                  </div>
+  
+                </div>
+  
+  
+  
+              </div>
+            </div>
+          </div>
+          {% endfor%}
+
+        </div>
+
+
+
+
+      </div>
+
+    </div>
+
+
+
+
+    <script src="{% static 'js/app.js' %}"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+var date = document.querySelectorAll('#date')
+for (var i = 0, len = date.length; i < len; i++) {
+  var datee = document.getElementById('date').innerText;
+  var date = new Date(datee)
+  console.log(date)
+
+  var mydate = new Date('29 Feb 2020');
+  // alert(mydate.toDateString().split(' ').slice(1).join(' '));
+
+}
+
+
+
+    </script>
+  </body>
+</html>
